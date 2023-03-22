@@ -2,17 +2,24 @@ const path = require('path');
 const fs = require('fs');
 const moment = require('moment');
 const axios = require('axios');
-const scripts = require('./scripts/index');
-const config = require('./config');
+const readline = require('readline');
 
-console.log("Welcome to FortShop v2 (created by ctrlkohl)!");
-console.log("1) Run Script");
-console.log("2) View Cosmetic");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-config.rl.question('Option: ', (option) => {
-    if (option == "1" || option == 1) {
-        scripts.index();
-    } else {
-        SendAlarm();
+console.log("Welcome to Kohl's Item Shop Generator!");
+console.log("1) Auto-Generate Item shop");
+console.log("2) Manual Generate Item shop");
+console.log("3) Execute Custom Script");
+
+rl.question('Option: ', async (option) => {
+    switch(parseInt(option)) {
+      case 1:
+        const autoGenScript = require('./scripts/autoGenerateItemShop');
+        autoGenScript.main();
+        break;
     }
+    rl.close();
 });
