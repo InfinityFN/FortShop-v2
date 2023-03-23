@@ -160,8 +160,8 @@ async function main() {
   var daily6CharacterJSON = await requests.getCosmeticJSON(Daily[5].split(':')[1]);
 
 
-  var featured1a = {id: Daily[0], price: prices.getPrice(Featured[0], featured1CharacterJSON.data.rarity.displayValue)};
-  var featured2a = {id: Daily[1], price: prices.getPrice(Featured[1], featured2CharacterJSON.data.rarity.displayValue)};
+  var featured1a = {id: Featured[0], price: prices.getPrice(Featured[0], featured1CharacterJSON.data.rarity.displayValue)};
+  var featured2a = {id: Featured[1], price: prices.getPrice(Featured[1], featured2CharacterJSON.data.rarity.displayValue)};
 
   var daily1a = {id: Daily[0], price: prices.getPrice(Daily[0], daily1CharacterJSON.data.rarity.displayValue)};
   var daily2a = {id: Daily[1], price: prices.getPrice(Daily[1], daily2CharacterJSON.data.rarity.displayValue)};
