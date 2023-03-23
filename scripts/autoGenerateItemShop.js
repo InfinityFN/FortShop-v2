@@ -146,7 +146,34 @@ async function main() {
   console.log("[Infinity Log] Successfully completed!");
 
   // get prices
+  const prices = require('../modules/pricing');
 
+  // TODO: Rip prices right from fortnite
+  var featured1CharacterJSON = await requests.getCosmeticJSON(Featured[0].split(':')[1]);
+  var featured2CharacterJSON = await requests.getCosmeticJSON(Featured[1].split(':')[1]);
+
+  var daily1CharacterJSON = await requests.getCosmeticJSON(Daily[0].split(':')[1]);
+  var daily2CharacterJSON = await requests.getCosmeticJSON(Daily[1].split(':')[1]);
+  var daily3CharacterJSON = await requests.getCosmeticJSON(Daily[2].split(':')[1]);
+  var daily4CharacterJSON = await requests.getCosmeticJSON(Daily[3].split(':')[1]);
+  var daily5CharacterJSON = await requests.getCosmeticJSON(Daily[4].split(':')[1]);
+  var daily6CharacterJSON = await requests.getCosmeticJSON(Daily[5].split(':')[1]);
+
+
+  var featured1a = {id: Daily[0], price: prices.getPrice(Featured[0], featured1CharacterJSON.data.rarity.displayValue)};
+  var featured2a = {id: Daily[1], price: prices.getPrice(Featured[1], featured2CharacterJSON.data.rarity.displayValue)};
+
+  var daily1a = {id: Daily[0], price: prices.getPrice(Daily[0], daily1CharacterJSON.data.rarity.displayValue)};
+  var daily2a = {id: Daily[1], price: prices.getPrice(Daily[1], daily2CharacterJSON.data.rarity.displayValue)};
+  var daily3a = {id: Daily[2], price: prices.getPrice(Daily[2], daily3CharacterJSON.data.rarity.displayValue)};
+  var daily4a = {id: Daily[3], price: prices.getPrice(Daily[3], daily4CharacterJSON.data.rarity.displayValue)};
+  var daily5a = {id: Daily[4], price: prices.getPrice(Daily[4], daily5CharacterJSON.data.rarity.displayValue)};
+  var daily6a = {id: Daily[5], price: prices.getPrice(Daily[5], daily6CharacterJSON.data.rarity.displayValue)};
+
+  var shop = require('../templates/shop').getShopJSON(featured1a, featured2a, daily1a, daily2a, daily3a, daily4a, daily5a, daily6a);
+
+  fs.writeFileSync(path.join(__dirname, '../output/shop.json'), JSON.stringify(shop, null, 2));
+  console.log('success!');
 }
 
 
