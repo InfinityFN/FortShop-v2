@@ -2,8 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const moment = require('moment');
 const axios = require('axios');
-const cosmetics = require('../modules/cosmetics');
-const requests = rqeuire('../modules/requests');
+const cosmetics = require('../modules/random');
+const requests = require('../modules/requests');
 
 async function main() {
   // USE FeaturedSkins[0].split(':')[1] (FeaturedSkins[1].split(':')[1] is backup)
@@ -34,7 +34,8 @@ async function main() {
   if (setJSON.status != 200) return console.log("Failed to get Cosmetic JSON");
 
   setJSON.data.forEach(async (cosmetic) => {
-    switch (type.backendValue) {
+    console.log(cosmetic);
+    switch (data.type.backendValue) {
       case "AthenaBackpack":
         if(Daily.length <= 5) {
           Daily.push("AthenaBackpack:" + cosmetic.id);
