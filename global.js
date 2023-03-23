@@ -4,9 +4,11 @@ const moment = require('moment');
 const axios = require('axios');
 const readline = require('readline');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const chapter = "1"; // The Chapter the backend is running on
+const season = "X"; // The season the backend is running on
 
-module.exports = rl;
+
+module.exports = {
+  chapter,
+  season
+};
