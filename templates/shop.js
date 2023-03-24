@@ -1,8 +1,8 @@
-function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily5, daily6) {
+function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily5, daily6, date) {
     var json = {
         refreshIntervalHrs: 24,
         dailyPurchaseHrs: 24,
-        expiration: date.getRefreshDate() /*'9999-12-31T23:59:59.999Z'*/,
+        expiration: date /*'9999-12-31T23:59:59.999Z'*/,
         storefronts: [
             {
                 name: 'BRDailyStorefront',
@@ -21,7 +21,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 9999,
                                 finalPrice: daily1.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 9999
                             }
                         ],
@@ -68,7 +68,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 0,
                                 finalPrice: daily2.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 0
                             }
                         ],
@@ -115,7 +115,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 0,
                                 finalPrice: daily3.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 0
                             }
                         ],
@@ -162,7 +162,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 0,
                                 finalPrice: daily4.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 0
                             }
                         ],
@@ -209,7 +209,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 0,
                                 finalPrice: daily5.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 0
                             }
                         ],
@@ -256,7 +256,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 0,
                                 finalPrice: daily6.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 0
                             }
                         ],
@@ -308,7 +308,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 0,
                                 finalPrice: featured2.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 0
                             }
                         ],
@@ -355,7 +355,7 @@ function getShopJSON(featured1, featured2, daily1, daily2, daily3, daily4, daily
                                 currencySubType: '',
                                 regularPrice: 0,
                                 finalPrice: featured1.price,
-                                saleExpiration: date.getRefreshDate(),
+                                saleExpiration: date,
                                 basePrice: 0
                             }
                         ],

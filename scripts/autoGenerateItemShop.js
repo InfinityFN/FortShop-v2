@@ -4,6 +4,7 @@ const moment = require('moment');
 const axios = require('axios');
 const cosmetics = require('../modules/random');
 const requests = require('../modules/requests');
+const date = require('../modules/date');
 
 async function main() {
   // USE FeaturedSkins[0].split(':')[1] (FeaturedSkins[1].split(':')[1] is backup)
@@ -33,110 +34,60 @@ async function main() {
   console.log("[Infinity Log] Starting set scrape");
   if (setJSON.status != 200) return console.log("Failed to get Cosmetic JSON");
 
+  console.log(setJSON);
+
   setJSON.data.forEach(async (cosmetic) => {
-    console.log(cosmetic);
-    switch (data.type.backendValue) {
+    //console.log(cosmetic);
+    switch (cosmetic.type.backendValue) {
       case "AthenaBackpack":
-        if(Daily.length <= 5) {
-          Daily.push("AthenaBackpack:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaBackpack:" + cosmetic.id);
         break;
       case "AthenaCharacter": {
-        if(Daily.length <= 1) {
-          Featured.push("AthenaCharacter:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Featured is full, disregarding cosmetic");
-        }
+        Featured.push("AthenaCharacter:" + cosmetic.id);
         break;
       }
       case "AthenaDance": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaDance:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaDance:" + cosmetic.id);
         break;
       }
       case "AthenaMusicPack": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaMusicPack:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaMusicPack:" + cosmetic.id);
         break;
       }
       case "AthenaPetCarrier": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaPetCarrier:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaPetCarrier:" + cosmetic.id);
         break;
       }
       case "AthenaToy": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaToy:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaToy:" + cosmetic.id);
         break;
       }
       case "AthenaGlider": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaGlider:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaGlider:" + cosmetic.id);
         break;
       }
       case "AthenaPickaxe": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaPickaxe:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaPickaxe:" + cosmetic.id);
         break;
       }
       case "AthenaSkyDiveContrail": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaSkyDiveContrail:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaSkyDiveContrail:" + cosmetic.id);
         break;
       }
       case "AthenaEmoji": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaEmoji:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaEmoji:" + cosmetic.id);
         break;
       }
       case "AthenaItemWrap": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaItemWrap:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaItemWrap:" + cosmetic.id);
         break;
       }
       case "AthenaLoadingScreen": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaLoadingScreen:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaLoadingScreen:" + cosmetic.id);
         break;
       }
       case "AthenaSpray": {
-        if(Daily.length <= 5) {
-          Daily.push("AthenaSpray:" + cosmetic.id);
-        } else {
-          console.log("[FortShop Warning] Daily is full, disregarding cosmetic");
-        }
+        Daily.push("AthenaSpray:" + cosmetic.id);
         break;
       }
       default: {
@@ -146,35 +97,106 @@ async function main() {
   });
   console.log("[Infinity Log] Successfully completed!");
 
+  console.log(Featured);
+  console.log(Daily);
+
+  var featured1string;
+  var featured2string;
+  
+  if(!Featured[0]) {
+    Featured[0] = cosmetics.getRandomSkins()[0];
+    featured1string = Featured[0].split(':')[1];
+  } else {
+    featured1string = Featured[0].split(':')[1];
+  }
+
+  if(!Featured[1]) {
+    Featured[1] = cosmetics.getRandomSkins()[0];
+    featured2string = Featured[1].split(':')[1];
+  } else {
+    featured2string = Featured[1].split(':')[1];
+  }
+
+  var daily1string;
+  var daily2string;
+  var daily3string;
+  var daily4string;
+  var daily5string;
+  var daily6string;
+
+  if (!Daily[0]) {
+    Daily[0] = cosmetics.getRandomPickaxes()[0];
+    daily1string = Daily[0].split(':')[1];
+  } else {
+    daily1string = Daily[0].split(':')[1];
+  }
+
+  if (!Daily[1]) {
+    Daily[1] = cosmetics.getRandomBackblings()[0];
+    daily2string = Daily[1].split(':')[1];
+  } else {
+    daily2string = Daily[1].split(':')[1];
+  }
+
+  if(!Daily[2]) {
+    Daily[2] = cosmetics.getRandomBackblings()[0];
+    daily3string = Daily[2].split(':')[1];
+  } else {
+    daily3string = Daily[2].split(':')[1];
+  }
+
+  if(!Daily[3]) {
+    Daily[3] = cosmetics.getRandomWraps()[0];
+    daily4string = Daily[3].split(':')[1];
+  } else {
+    daily4string = Daily[3].split(':')[1];
+  }
+
+  if(!Daily[4]) {
+    Daily[4] = cosmetics.getRandomItem()[0];
+    daily5string = Daily[4].split(':')[1];
+  } else {
+    daily5string = Daily[4].split(':')[1];
+  }
+
+  if(!Daily[5]) {
+    Daily[5] = cosmetics.getRandomItem()[0];
+    daily6string = Daily[5].split(':')[1];
+  } else {
+    daily6string = Daily[5].split(':')[1];
+  }
+
   // get prices
   const prices = require('../modules/pricing');
 
   // TODO: Rip prices right from fortnite
-  var featured1CharacterJSON = await requests.getCosmeticJSON(Featured[0].split(':')[1]);
-  var featured2CharacterJSON = await requests.getCosmeticJSON(Featured[1].split(':')[1]);
+  var featured1CharacterJSON = await requests.getCosmeticJSON(featured1string);
+  var featured2CharacterJSON = await requests.getCosmeticJSON(featured2string);
 
-  var daily1CharacterJSON = await requests.getCosmeticJSON(Daily[0].split(':')[1]);
-  var daily2CharacterJSON = await requests.getCosmeticJSON(Daily[1].split(':')[1]);
-  var daily3CharacterJSON = await requests.getCosmeticJSON(Daily[2].split(':')[1]);
-  var daily4CharacterJSON = await requests.getCosmeticJSON(Daily[3].split(':')[1]);
-  var daily5CharacterJSON = await requests.getCosmeticJSON(Daily[4].split(':')[1]);
-  var daily6CharacterJSON = await requests.getCosmeticJSON(Daily[5].split(':')[1]);
+  var daily1CharacterJSON = await requests.getCosmeticJSON(daily1string);
+  var daily2CharacterJSON = await requests.getCosmeticJSON(daily2string);
+  var daily3CharacterJSON = await requests.getCosmeticJSON(daily3string);
+  var daily4CharacterJSON = await requests.getCosmeticJSON(daily4string);
+  var daily5CharacterJSON = await requests.getCosmeticJSON(daily5string);
+  var daily6CharacterJSON = await requests.getCosmeticJSON(daily6string);
 
 
-  var featured1a = {id: Featured[0], price: prices.getPrice(Featured[0], featured1CharacterJSON.data.rarity.displayValue)};
-  var featured2a = {id: Featured[1], price: prices.getPrice(Featured[1], featured2CharacterJSON.data.rarity.displayValue)};
+  var featured1a = { id: Featured[0], price: prices.getPrice(Featured[0], featured1CharacterJSON.data.rarity.displayValue) };
+  var featured2a = { id: Featured[1], price: prices.getPrice(Featured[1], featured2CharacterJSON.data.rarity.displayValue) };
 
-  var daily1a = {id: Daily[0], price: prices.getPrice(Daily[0], daily1CharacterJSON.data.rarity.displayValue)};
-  var daily2a = {id: Daily[1], price: prices.getPrice(Daily[1], daily2CharacterJSON.data.rarity.displayValue)};
-  var daily3a = {id: Daily[2], price: prices.getPrice(Daily[2], daily3CharacterJSON.data.rarity.displayValue)};
-  var daily4a = {id: Daily[3], price: prices.getPrice(Daily[3], daily4CharacterJSON.data.rarity.displayValue)};
-  var daily5a = {id: Daily[4], price: prices.getPrice(Daily[4], daily5CharacterJSON.data.rarity.displayValue)};
-  var daily6a = {id: Daily[5], price: prices.getPrice(Daily[5], daily6CharacterJSON.data.rarity.displayValue)};
+  var daily1a = { id: Daily[0], price: prices.getPrice(Daily[0], daily1CharacterJSON.data.rarity.displayValue) };
+  var daily2a = { id: Daily[1], price: prices.getPrice(Daily[1], daily2CharacterJSON.data.rarity.displayValue) };
+  var daily3a = { id: Daily[2], price: prices.getPrice(Daily[2], daily3CharacterJSON.data.rarity.displayValue) };
+  var daily4a = { id: Daily[3], price: prices.getPrice(Daily[3], daily4CharacterJSON.data.rarity.displayValue) };
+  var daily5a = { id: Daily[4], price: prices.getPrice(Daily[4], daily5CharacterJSON.data.rarity.displayValue) };
+  var daily6a = { id: Daily[5], price: prices.getPrice(Daily[5], daily6CharacterJSON.data.rarity.displayValue) };
 
-  var shop = require('../templates/shop').getShopJSON(featured1a, featured2a, daily1a, daily2a, daily3a, daily4a, daily5a, daily6a);
+  var shop = require('../templates/shop').getShopJSON(featured1a, featured2a, daily1a, daily2a, daily3a, daily4a, daily5a, daily6a, date.getRefreshDate());
 
   fs.writeFileSync(path.join(__dirname, '../output/shop.json'), JSON.stringify(shop, null, 2));
   console.log('success!');
+
+
 }
 
 
