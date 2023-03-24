@@ -102,15 +102,15 @@ async function main() {
 
   var featured1string;
   var featured2string;
-  
-  if(!Featured[0]) {
+
+  if (!Featured[0]) {
     Featured[0] = cosmetics.getRandomSkins()[0];
     featured1string = Featured[0].split(':')[1];
   } else {
     featured1string = Featured[0].split(':')[1];
   }
 
-  if(!Featured[1]) {
+  if (!Featured[1]) {
     Featured[1] = cosmetics.getRandomSkins()[0];
     featured2string = Featured[1].split(':')[1];
   } else {
@@ -138,28 +138,28 @@ async function main() {
     daily2string = Daily[1].split(':')[1];
   }
 
-  if(!Daily[2]) {
+  if (!Daily[2]) {
     Daily[2] = cosmetics.getRandomBackblings()[0];
     daily3string = Daily[2].split(':')[1];
   } else {
     daily3string = Daily[2].split(':')[1];
   }
 
-  if(!Daily[3]) {
+  if (!Daily[3]) {
     Daily[3] = cosmetics.getRandomWraps()[0];
     daily4string = Daily[3].split(':')[1];
   } else {
     daily4string = Daily[3].split(':')[1];
   }
 
-  if(!Daily[4]) {
+  if (!Daily[4]) {
     Daily[4] = cosmetics.getRandomItem()[0];
     daily5string = Daily[4].split(':')[1];
   } else {
     daily5string = Daily[4].split(':')[1];
   }
 
-  if(!Daily[5]) {
+  if (!Daily[5]) {
     Daily[5] = cosmetics.getRandomItem()[0];
     daily6string = Daily[5].split(':')[1];
   } else {
@@ -193,6 +193,56 @@ async function main() {
 
   var shop = require('../templates/shop').getShopJSON(featured1a, featured2a, daily1a, daily2a, daily3a, daily4a, daily5a, daily6a, date.getRefreshDate());
 
+  const embed = {
+    title: 'New Item Shop!',
+    description: "Infinity's Item shop has been reset! here is a overview of all of the new items! *Testing FortShop v2*",
+    color: 0x98f000, // Hex color code
+    fields: [
+      {
+        name: `${featured1CharacterJSON.data.name}:`,
+        value: `Vbucks: ${featured1a.price}\nDescription: ${featured1CharacterJSON.data.description}`,
+        inline: true,
+      },
+      {
+        name: `${featured2CharacterJSON.data.name}`,
+        value: `Vbucks: ${featured2a.price}\nDescription: ${featured2CharacterJSON.data.description}`,
+        inline: true,
+      },
+      {
+        name: `${daily1CharacterJSON.data.name}`,
+        value: `Vbucks: ${daily1a.price}\nDescription: ${daily1CharacterJSON.data.description}`,
+        inline: true,
+      },
+      {
+        name: `${daily2CharacterJSON.data.name}`,
+        value: `Vbucks: ${daily2a.price}\nDescription: ${daily2CharacterJSON.data.description}`,
+        inline: true,
+      },
+      {
+        name: `${daily3CharacterJSON.data.name}`,
+        value: `Vbucks: ${daily3a.price}\nDescription: ${daily3CharacterJSON.data.description}`,
+        inline: true,
+      },
+      {
+        name: `${daily4CharacterJSON.data.name}`,
+        value: `Vbucks: ${daily4a.price}\nDescription: ${daily4CharacterJSON.data.description}`,
+        inline: true,
+      },
+      {
+        name: `${daily5CharacterJSON.data.name}`,
+        value: `Vbucks: ${daily5a.price}\nDescription: ${daily5CharacterJSON.data.description}`,
+        inline: true,
+      },
+      {
+        name: `${daily6CharacterJSON.data.name}`,
+        value: `Vbucks: ${daily6a.price}\nDescription: ${daily6CharacterJSON.data.description}`,
+        inline: true,
+      }
+    ],
+    timestamp: new Date().toISOString(),
+  };
+
+  require('../modules/discord').sendEmbedJson(embed);
   fs.writeFileSync(path.join(__dirname, '../output/shop.json'), JSON.stringify(shop, null, 2));
   console.log('success!');
 
